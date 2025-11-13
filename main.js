@@ -22,11 +22,31 @@ function addBookToLibrary(library, title, author, numPages, read) {
 }
 
 function createBookCard (book){
-    // Book cards are divs in the HTML for each book in the library.
+    // Book cards are divs in the HTML created from a Book object.
+    /* Structure: 
+        <div> .book
+            <h3> for title and author
+            <p> for pages and read status
+            <p> for id
+        </div>
+    */
+
     const bookCard = document.createElement("div");
     bookCard.classList = "book";
     bookCard.id = book.id;
-    bookCard.textContent = book.info();
+
+    const titleAndAuthor = document.createElement("h3");
+    titleAndAuthor.textContent = `${book.title} by ${book.author}`;
+    bookCard.appendChild(titleAndAuthor);
+
+    const pagesAndReadStatus = document.createElement("p");
+    pagesAndReadStatus.textContent = `${book.numPages} pages, ${book.isRead ? "read" : "not read yet"}`;
+    bookCard.appendChild(pagesAndReadStatus);
+
+    const bookID = document.createElement("p");
+    bookID.textContent = `ID ${book.id}`;
+    bookCard.appendChild(bookID);
+
     return bookCard;
 }
 
