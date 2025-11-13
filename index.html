@@ -11,8 +11,8 @@
     <h1>Odin Library</h1>
     <div class="menu">
         <dialog id="newBookDialog">
-            <h2>Enter new book details below.</h2>
             <form>
+                <h2>Enter new book details below.</h2>
                 <label for="title">Title:
                     <input type="text" id="title" name="title">
                 </label>
@@ -28,8 +28,9 @@
                 <label for="isRead">Is the book read?
                     <input type="checkbox" id="isRead" name="isRead">
                 </label>
+
+                <button id="closeNewBookDialogButton" formmethod="dialog">Close</button>
             </form>
-            <button id="closeNewBookDialogButton">Close</button>
         </dialog>
         <button id="newBookButton">New Book</button>
     </div>

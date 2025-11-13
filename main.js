@@ -72,10 +72,6 @@ newBookButton.addEventListener("click", () => {
     newBookDialog.showModal();
 });
 
-closeNewBookDialogButton.addEventListener("click", () => {
-    newBookDialog.close();
-})
-
 // library array code
 const myLibrary = [];
 addBookToLibrary(myLibrary, "Design Patterns", "Gang of Four", 99, false);
