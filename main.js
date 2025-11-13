@@ -63,11 +63,26 @@ function addBookCardsToElement(library, booksParentElement){
     }
 }
 
+// Dialog code
+const newBookDialog = document.querySelector("dialog#newBookDialog");
+const newBookButton = document.querySelector("button#newBookButton");
+const closeNewBookDialogButton = document.querySelector("button#closeNewBookDialogButton");
+
+newBookButton.addEventListener("click", () => {
+    newBookDialog.showModal();
+});
+
+closeNewBookDialogButton.addEventListener("click", () => {
+    newBookDialog.close();
+})
+
+// library array code
 const myLibrary = [];
 addBookToLibrary(myLibrary, "Design Patterns", "Gang of Four", 99, false);
 addBookToLibrary(myLibrary, "FOCS", "Malik", 99, true);
 addBookToLibrary(myLibrary, "How to live with CSS", "Underpaid intern", 1, false);
 
+// add library to the DOM element
 const booksDiv = document.querySelector("div.books");
 addBookCardsToElement(myLibrary, booksDiv);
 
