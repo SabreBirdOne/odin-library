@@ -10,7 +10,15 @@ h1 {
 
 .menu {
     height: 5vh;
-    outline: 1px solid red;
+    display: flex;
+    align-items: center;
+}
+
+.menu button {
+    padding: 0.5rem;
+    background-color: lightgray;
+    border: 3px solid black;
+    border-radius: 10px;
 }
 
 .menu dialog {
