@@ -28,6 +28,7 @@ function createBookCard (book){
             <h3> for title and author
             <p> for pages and read status
             <p> for id
+            <button> for removing the book card
         </div>
     */
 
@@ -47,6 +48,13 @@ function createBookCard (book){
     bookID.textContent = `ID ${book.id}`;
     bookCard.appendChild(bookID);
 
+    const removeBookButton = document.createElement("button");
+    removeBookButton.textContent = "Remove Book";
+    removeBookButton.addEventListener("click", (e) => {
+        removeBookFromLibrary(e, myLibrary, booksDiv);
+    });
+    bookCard.appendChild(removeBookButton);
+
     return bookCard;
 }
 
@@ -61,6 +69,26 @@ function addBookCardsToElement(library, booksParentElement){
         const newBookCard = createBookCard(library[i])
         booksParentElement.appendChild(newBookCard);
     }
+}
+
+function removeBookFromLibrary(event, library, parentElement){
+    /* 
+    PARAMETERS:
+        event: the event that will be listened to. Used to access the book card div of a book
+        library: array of Book objects in JavaScript
+        parentElement: the books div that the current book card div is a child of
+    
+    REQUIRES: 
+        this function to be attached to the event listener for a book removal button under 
+        any book card div
+    
+    EFFECTS:
+        when heard a click event on a remove book button, remove the book from both the 
+        parentElement in the DOM and the library in JavaScript.
+    */
+    const indexToRemove = library.findIndex((book) => event.target.parentNode.dataset.id === book.id); 
+    library.splice(indexToRemove, 1);
+    parentElement.removeChild(event.target.parentNode);
 }
 
 // Dialog code
