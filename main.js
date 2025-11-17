@@ -33,7 +33,7 @@ function createBookCard (book){
 
     const bookCard = document.createElement("div");
     bookCard.classList = "book";
-    bookCard.id = book.id;
+    bookCard.dataset.id = book.id;
 
     const titleAndAuthor = document.createElement("h3");
     titleAndAuthor.textContent = `${book.title} by ${book.author}`;
