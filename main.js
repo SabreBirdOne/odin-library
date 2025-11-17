@@ -64,12 +64,35 @@ function addBookCardsToElement(library, booksParentElement){
 }
 
 // Dialog code
-const newBookDialog = document.querySelector("dialog#newBookDialog");
 const newBookButton = document.querySelector("button#newBookButton");
-const closeNewBookDialogButton = document.querySelector("button#closeNewBookDialogButton");
+const newBookDialog = document.querySelector("dialog#newBookDialog");
+const newBookDialogConfirmButton = newBookDialog.querySelector("button#confirmButton");
+const newBookDialogForm = newBookDialog.querySelector("form");
 
+// "Show the dialog" button opens the <dialog> modally
 newBookButton.addEventListener("click", () => {
     newBookDialog.showModal();
+});
+
+newBookDialogConfirmButton.addEventListener("click", (event) => {
+    event.preventDefault();
+    newBookDialog.close("confirm");
+});
+
+/* "Cancel" button closes the dialog without submitting because of [formmethod="dialog"].
+"Confirm" button also closes the dialog with "confirm" returnValue to add a book to library. 
+Both buttons trigger a close event to close the dialog. */
+newBookDialog.addEventListener("close", (event) => {
+    if (newBookDialog.returnValue === "confirm"){
+        const bookArgs = newBookDialogForm.querySelectorAll("input");
+        const newBook = new Book ( 
+            bookArgs[0].value, 
+            bookArgs[1].value,
+            bookArgs[2].valueAsNumber,
+            bookArgs[3].checked
+        )
+        addBookCardsToElement([newBook], booksDiv);
+    }  
 });
 
 // library array code

@@ -28,8 +28,10 @@
                 <label for="isRead">Is the book read?
                     <input type="checkbox" id="isRead" name="isRead">
                 </label>
-
-                <button id="closeNewBookDialogButton" formmethod="dialog">Close</button>
+                <div>
+                    <button value="cancel" formmethod="dialog">Cancel</button>
+                    <button value="confirm" id="confirmButton">Confirm</button>
+                </div>
             </form>
         </dialog>
         <button id="newBookButton">New Book</button>
