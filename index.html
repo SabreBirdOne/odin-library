@@ -7,36 +7,35 @@
     <link rel="stylesheet" href="styles.css">
     <script async src="main.js"></script>
 </head>
-<body>
-    <h1>Odin Library</h1>
-    <div class="menu">
-        <dialog id="newBookDialog">
-            <form>
-                <h2>Enter new book details below.</h2>
-                <label for="title">Title:
-                    <input type="text" id="title" name="title">
-                </label>
+    <body>
+        <h1>Odin Library</h1>
+        <div class="menu">
+            <dialog id="newBookDialog">
+                <form>
+                    <h2>Enter new book details below.</h2>
+                    <label for="title">Title:
+                        <input type="text" id="title" name="title">
+                    </label>
 
-                <label for="author">Author:
-                    <input type="text" id="author" name="author">
-                </label>
+                    <label for="author">Author:
+                        <input type="text" id="author" name="author">
+                    </label>
 
-                <label for="numPages">Pages:
-                    <input type="number" id="numPages" name="numPages">
-                </label>
+                    <label for="numPages">Pages:
+                        <input type="number" id="numPages" name="numPages">
+                    </label>
 
-                <label for="isRead">Is the book read?
-                    <input type="checkbox" id="isRead" name="isRead">
-                </label>
-                <div>
-                    <button value="cancel" formmethod="dialog">Cancel</button>
-                    <button value="confirm" id="confirmButton">Confirm</button>
-                </div>
-            </form>
-        </dialog>
-        <button id="newBookButton">New Book</button>
-    </div>
-    <div class="books"></div>
-
-</body>
+                    <label for="isRead">Is the book read?
+                        <input type="checkbox" id="isRead" name="isRead">
+                    </label>
+                    <div>
+                        <button value="cancel" formmethod="dialog">Cancel</button>
+                        <button value="confirm" id="confirmButton">Confirm</button>
+                    </div>
+                </form>
+            </dialog>
+            <button id="newBookButton">New Book</button>
+        </div>
+        <div class="books"></div>
+    </body>
 </html>
