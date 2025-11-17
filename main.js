@@ -92,6 +92,7 @@ newBookDialog.addEventListener("close", (event) => {
             bookArgs[3].checked
         )
         addBookCardsToElement([newBook], booksDiv);
+        myLibrary.push(newBook);
     }  
 });
 
