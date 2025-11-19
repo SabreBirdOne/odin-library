@@ -15,6 +15,10 @@ function Book(title, author, numPages, read) {
     }
 }
 
+Book.prototype.toggleRead = function() {
+    this.isRead = !this.isRead;
+}
+
 function addBookToLibrary(library, title, author, numPages, read) {
   // take params, create a book then store it in the array
   const newBook = new Book(title, author, numPages, read);
@@ -105,7 +109,7 @@ newBookButton.addEventListener("click", () => {
 newBookDialogConfirmButton.addEventListener("click", (event) => {
     event.preventDefault();
     newBookDialog.close("confirm");
-});
+}); 
 
 /* "Cancel" button closes the dialog without submitting because of [formmethod="dialog"].
 "Confirm" button also closes the dialog with "confirm" returnValue to add a book to library. 
