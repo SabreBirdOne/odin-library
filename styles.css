@@ -56,7 +56,16 @@ h1 {
 
 .book button {
     padding: 0.5rem;
-    background-color: red;
     border: 3px solid black;
     border-radius: 10px;
+    margin-top: 1rem;
+}
+
+.book button.remove {
+    background-color: red;
+}
+
+.book button.toggleReadStatus {
+    background-color: lightblue;
+    margin-left: 1rem;
 }

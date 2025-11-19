@@ -55,6 +55,7 @@ function createBookCard (book){
 
     const removeBookButton = document.createElement("button");
     removeBookButton.textContent = "Remove Book";
+    removeBookButton.classList = "remove";
     removeBookButton.addEventListener("click", (e) => {
         removeBookFromLibrary(e, myLibrary, booksDiv);
     });
@@ -62,6 +63,7 @@ function createBookCard (book){
 
     const toggleReadStatusButton = document.createElement("button");
     toggleReadStatusButton.textContent = "Change read status";
+    toggleReadStatusButton.classList = "toggleReadStatus"
     toggleReadStatusButton.addEventListener("click", (e) => {
         toggleReadStatusOnBookCard(e, myLibrary);
     })
