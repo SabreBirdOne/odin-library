@@ -1,0 +1,60 @@
+A TILT TOWARDS MORE DOM MANIPULATION IN JAVASCRIPT OVER HTML?
+
+This project has a lot of DOM manipulation practice, which is a great refresher. 
+A lot of the webpage display code is moving towards being defined in JavaScript via
+DOM manipulation script. 
+
+A new kind of confusion will be a challenge: if I want to change the initial HTML/DOM structure,
+I need to figure out if the code may lie in the HTML file or defined by some JavaScript source file 
+somewhere. Dev Tools will help.
+
+THE <dialog> HTML ELEMENT
+
+The <dialog> HTML element deserves its own introduction. I wish The Odin Project provided more practice
+with <form> and <dialog>, especially in how these are so important to the Create New Book feature.
+
+NOT ENOUGH OBJECT CONSTRUCTION OR PROTOTYPE PRACTICE? 
+
+Personally I don't see enough practice in prototypes. Certainly something I 
+want to get a better hang of coming from other OOP languages like C++.
+
+Prototypical inheritance seems to be a big thing in JavaScript. MDN docs mention 
+it a lot.
+
+MODEL VIEW CONTROLLER
+
+I spent significant effort trying to reconcile the DOM with the myLibrary 
+array of Book objects. Especially for code dealing with affecting one specific 
+book in myLibrary. 
+
+This effort reminds me of the Model-View-Controller design pattern:
+https://developer.mozilla.org/en-US/docs/Glossary/MVCand 
+
+Here's how I think it can apply to this project:
+
+- The Model is the Book class, storing all the properties and methods on each Book object
+- Arguably, the myLibrary array of Book objects can be considered part of the model too?
+- The Controller should be all the other functions I wrote to interact with the myLibrary, 
+each Book inside it, and reconcile with the View. Maybe group them into some Librarian object.
+- The View is the DOM itself with all the buttons.
+
+Honestly, the real complaint is that I just don't know how to write good Controllers.
+And that this project focuses too much on this at this point in the course.
+
+ADDENDUM: HOW I HANDLED myLibrary AND BOOK CARDS
+
+To change the Book object itself is easy if somewhat clunky. Use the data-id attribute
+and find the index of the Book object with a matching id property inside the myLibrary array.
+It's as clunky as Array.prototype.findIndex() should be. O(n) where n is number of books?
+
+To change the "book card" div on the webpage, I relied on using event.target.parentNode:
+- the event should be a "click" on some button.
+- the target is the button element.
+- the parentNode is the "book card" div the button is a child of.
+
+On top of that, to remove the book, I also need access to the parent of the "book cards". 
+And to change the "is read" text, I had to query for the <p> element under the book card.
+
+I have to get used to querying for elements like this. I know I can always use id or class
+selectors but I prefer less code.
+
