@@ -33,6 +33,7 @@ function createBookCard (book){
             <p> for pages and read status
             <p> for id
             <button> for removing the book card
+            <button> for toggling read status
         </div>
     */
 
@@ -58,6 +59,13 @@ function createBookCard (book){
         removeBookFromLibrary(e, myLibrary, booksDiv);
     });
     bookCard.appendChild(removeBookButton);
+
+    const toggleReadStatusButton = document.createElement("button");
+    toggleReadStatusButton.textContent = "Change read status";
+    toggleReadStatusButton.addEventListener("click", (e) => {
+        toggleReadStatusOnBookCard(e, myLibrary);
+    })
+    bookCard.appendChild(toggleReadStatusButton);
 
     return bookCard;
 }
@@ -93,6 +101,28 @@ function removeBookFromLibrary(event, library, parentElement){
     const indexToRemove = library.findIndex((book) => event.target.parentNode.dataset.id === book.id); 
     library.splice(indexToRemove, 1);
     parentElement.removeChild(event.target.parentNode);
+}
+
+function toggleReadStatusOnBookCard(event, library){
+    /* 
+    PARAMETERS:
+        event: the event that will be listened to. Used to access the book card div of a book
+        library: array of Book objects in JavaScript
+    
+    REQUIRES: 
+        this function to be attached to the event listener for a toggle read status button under 
+        any book card div
+    
+    EFFECTS:
+        when heard a click event on a toggle read status button, toggle the read status of the 
+        Book object in the library, and update the read status on the book card in the DOM.
+    */
+
+   const indexToToggleReadStatus = library.findIndex((book) => event.target.parentNode.dataset.id === book.id);
+   const book = library[indexToToggleReadStatus];
+   book.toggleRead();
+   const pagesAndReadStatus = event.target.parentNode.querySelector("p");
+   pagesAndReadStatus.textContent = `${book.numPages} pages, ${book.isRead ? "read" : "not read yet"}`;
 }
 
 // Dialog code
