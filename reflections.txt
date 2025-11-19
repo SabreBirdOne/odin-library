@@ -21,6 +21,9 @@ want to get a better hang of coming from other OOP languages like C++.
 Prototypical inheritance seems to be a big thing in JavaScript. MDN docs mention 
 it a lot.
 
+Well, Odin doesn't dwelve on constructors for good reason, as explained in the next 
+lesson in the course. Factories huh?
+
 MODEL VIEW CONTROLLER
 
 I spent significant effort trying to reconcile the DOM with the myLibrary 
