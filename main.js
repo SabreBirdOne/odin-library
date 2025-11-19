@@ -16,7 +16,9 @@ function Book(title, author, numPages, read) {
 }
 
 Book.prototype.toggleRead = function() {
-    this.isRead = !this.isRead;
+    if (this.hasOwnProperty("isRead")){
+        this.isRead = !this.isRead;
+    }
 }
 
 function addBookToLibrary(library, title, author, numPages, read) {
