@@ -1,23 +1,26 @@
-function Book(title, author, numPages, read) {
-    if (!new.target) {
-        throw Error("missing new before constructor call");
+class Book {
+    constructor(title, author, numPages, read){
+        if (!new.target) {
+            throw Error("missing new before constructor call");
+        }
+        
+        this.id = crypto.randomUUID();
+        this.title = title;
+        this.author = author;
+        this.numPages = numPages;
+        this.isRead = read || false;
     }
     
-    this.id = crypto.randomUUID();
-    this.title = title;
-    this.author = author;
-    this.numPages = numPages;
-    this.isRead = read || false;
 
-    this.info = function (){
+    info (){
         const isReadStr = this.isRead ? "read" : "not read yet"; 
         return `ID ${this.id}: ${this.title} by ${this.author}, ${this.numPages} pages, ` + isReadStr;
     }
-}
 
-Book.prototype.toggleRead = function() {
-    if (this.hasOwnProperty("isRead")){
-        this.isRead = !this.isRead;
+    toggleRead() {
+        if (this.hasOwnProperty("isRead")){
+            this.isRead = !this.isRead;
+        }
     }
 }
 
