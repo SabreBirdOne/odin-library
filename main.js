@@ -141,27 +141,45 @@ const newBookDialogForm = newBookDialog.querySelector("form");
 
 // Inputs to validate
 const titleInput = newBookDialogForm.querySelector("input#title");
+const authorInput = newBookDialogForm.querySelector("input#author");
 
 // Validation functions
-function isTitleValid(){
-    if (!titleInput.validity.valid || !titleInput.value){
+function isTextValid(element){
+    if (!element.validity.valid || !element.value){
         return false;
     }
     return true;
 }
 
+function isTitleValid(){
+    return isTextValid(titleInput);
+}
+
+function isAuthorValid(){
+    return isTextValid(authorInput);
+}
+
 // Error message spans
 const titleErrorSpan = newBookDialogForm.querySelector("span.error.title");
+const authorErrorSpan = newBookDialogForm.querySelector("span.error.author");
 
 // Error message functions
+function showTextErrors(inputField, inputName, errorSpan){
+    errorSpan.textContent = "";
+    if (!inputField.validity.valid){
+        errorSpan.textContent = inputField.validationMessage;   
+    }
+    if (!inputField.value){
+        errorSpan.textContent = `${inputName} cannot be empty`;
+    }
+}
+
 function showTitleErrors(){
-    titleErrorSpan.textContent = "";
-    if (!titleInput.validity.valid){
-        titleErrorSpan.textContent = titleInput.validationMessage;   
-    }
-    if (!titleInput.value){
-        titleErrorSpan.textContent = "Title cannot be empty";
-    }
+    showTextErrors(titleInput, "Title", titleErrorSpan);
+}
+
+function showAuthorErrors(){
+    showTextErrors(authorInput, "Author", authorErrorSpan);
 }
 
 // "Show the dialog" button opens the <dialog> modally
@@ -171,11 +189,12 @@ newBookButton.addEventListener("click", () => {
 
 newBookDialogConfirmButton.addEventListener("click", (event) => {
     event.preventDefault();
-    if (isTitleValid()){
+    if (isTitleValid() && isAuthorValid()){
         newBookDialog.close("confirm");
     }
     else {
         showTitleErrors();
+        showAuthorErrors();
     }
     
 }); 
@@ -197,7 +216,10 @@ newBookDialog.addEventListener("close", (event) => {
     }  
     else {
         // Cancel button pressed - clear text content in error spans
-        for (let errorSpan of [titleErrorSpan]){
+        for (let errorSpan of [
+            titleErrorSpan,
+            authorErrorSpan,
+        ]){
             errorSpan.textContent = "";
         }        
     }
