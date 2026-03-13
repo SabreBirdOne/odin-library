@@ -213,7 +213,6 @@ function showNumPageErrors(){
         numPagesErrorSpan.textContent = "Number of pages is missing.";
     }
     else if (!(element.value > 0 && Number.isInteger(Number(element.value)))){
-        console.log(Number.isInteger(element.value));
         numPagesErrorSpan.textContent = "Number of pages must be positive integer: 1, 2, 3, etc.";
     }
 }
