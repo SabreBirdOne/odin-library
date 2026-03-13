@@ -136,6 +136,7 @@ function toggleReadStatusOnBookCard(event, library){
 const newBookButton = document.querySelector("button#newBookButton");
 const newBookDialog = document.querySelector("dialog#newBookDialog");
 const newBookDialogConfirmButton = newBookDialog.querySelector("button#confirmButton");
+const newBookDialogCancelButton = newBookDialog.querySelector("button#cancelButton");
 const newBookDialogForm = newBookDialog.querySelector("form");
 
 // "Show the dialog" button opens the <dialog> modally
