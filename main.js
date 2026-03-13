@@ -142,6 +142,7 @@ const newBookDialogForm = newBookDialog.querySelector("form");
 // Inputs to validate
 const titleInput = newBookDialogForm.querySelector("input#title");
 const authorInput = newBookDialogForm.querySelector("input#author");
+const numPagesInput = newBookDialogForm.querySelector("input#numPages");
 
 // Validation functions
 function isTextValid(element){
@@ -157,6 +158,25 @@ function isTitleValid(){
 
 function isAuthorValid(){
     return isTextValid(authorInput);
+}
+
+function isNumPagesValid(){
+    const element = numPagesInput;
+    if (!element.validity.valid){
+        return false;
+    }
+    
+    if (!element.value){
+        return false;
+    }
+
+    const isPositiveInteger = element.value > 0 
+        && Number.isInteger(element.value);
+
+    if (!isPositiveInteger){
+        return false;
+    }
+    return true;
 }
 
 // Error message spans
@@ -189,7 +209,7 @@ newBookButton.addEventListener("click", () => {
 
 newBookDialogConfirmButton.addEventListener("click", (event) => {
     event.preventDefault();
-    if (isTitleValid() && isAuthorValid()){
+    if (isTitleValid() && isAuthorValid() && isNumPagesValid()){
         newBookDialog.close("confirm");
     }
     else {
