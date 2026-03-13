@@ -142,11 +142,26 @@ const newBookDialogForm = newBookDialog.querySelector("form");
 // Inputs to validate
 const titleInput = newBookDialogForm.querySelector("input#title");
 
+// Validation functions
 function isTitleValid(){
-    if (!titleInput.value){
+    if (!titleInput.validity.valid || !titleInput.value){
         return false;
     }
     return true;
+}
+
+// Error message spans
+const titleErrorSpan = newBookDialogForm.querySelector("span.error.title");
+
+// Error message functions
+function showTitleErrors(){
+    titleErrorSpan.textContent = "";
+    if (!titleInput.validity.valid){
+        titleErrorSpan.textContent = titleInput.validationMessage;   
+    }
+    if (!titleInput.value){
+        titleErrorSpan.textContent = "Title cannot be empty";
+    }
 }
 
 // "Show the dialog" button opens the <dialog> modally
@@ -158,6 +173,9 @@ newBookDialogConfirmButton.addEventListener("click", (event) => {
     event.preventDefault();
     if (isTitleValid()){
         newBookDialog.close("confirm");
+    }
+    else {
+        showTitleErrors();
     }
     
 }); 
@@ -177,6 +195,12 @@ newBookDialog.addEventListener("close", (event) => {
         addBookCardsToElement([newBook], booksDiv);
         myLibrary.push(newBook);
     }  
+    else {
+        // Cancel button pressed - clear text content in error spans
+        for (let errorSpan of [titleErrorSpan]){
+            errorSpan.textContent = "";
+        }        
+    }
 });
 
 // library array code
