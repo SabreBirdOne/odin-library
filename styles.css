@@ -39,6 +39,10 @@ h1 {
     align-self: center;
 }
 
+.menu dialog form span.error {
+    color: red;
+}
+
 .books {
     display: flex;
     flex-direction: column;

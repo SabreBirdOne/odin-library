@@ -171,7 +171,7 @@ function isNumPagesValid(){
     }
 
     const isPositiveInteger = element.value > 0 
-        && Number.isInteger(element.value);
+        && Number.isInteger(Number(element.value))
 
     if (!isPositiveInteger){
         return false;
@@ -182,6 +182,7 @@ function isNumPagesValid(){
 // Error message spans
 const titleErrorSpan = newBookDialogForm.querySelector("span.error.title");
 const authorErrorSpan = newBookDialogForm.querySelector("span.error.author");
+const numPagesErrorSpan = newBookDialogForm.querySelector("span.error.numPages");
 
 // Error message functions
 function showTextErrors(inputField, inputName, errorSpan){
@@ -189,7 +190,7 @@ function showTextErrors(inputField, inputName, errorSpan){
     if (!inputField.validity.valid){
         errorSpan.textContent = inputField.validationMessage;   
     }
-    if (!inputField.value){
+    else if (!inputField.value){
         errorSpan.textContent = `${inputName} cannot be empty`;
     }
 }
@@ -200,6 +201,21 @@ function showTitleErrors(){
 
 function showAuthorErrors(){
     showTextErrors(authorInput, "Author", authorErrorSpan);
+}
+
+function showNumPageErrors(){
+    numPagesErrorSpan.textContent = "";
+    const element = numPagesInput;
+    if (!element.validity.valid){
+        numPagesErrorSpan.textContent = element.validationMessage;
+    }
+    else if (!element.value){
+        numPagesErrorSpan.textContent = "Number of pages is missing.";
+    }
+    else if (!(element.value > 0 && Number.isInteger(Number(element.value)))){
+        console.log(Number.isInteger(element.value));
+        numPagesErrorSpan.textContent = "Number of pages must be positive integer: 1, 2, 3, etc.";
+    }
 }
 
 // "Show the dialog" button opens the <dialog> modally
@@ -215,6 +231,7 @@ newBookDialogConfirmButton.addEventListener("click", (event) => {
     else {
         showTitleErrors();
         showAuthorErrors();
+        showNumPageErrors();
     }
     
 }); 
@@ -239,6 +256,7 @@ newBookDialog.addEventListener("close", (event) => {
         for (let errorSpan of [
             titleErrorSpan,
             authorErrorSpan,
+            numPagesErrorSpan
         ]){
             errorSpan.textContent = "";
         }        
