@@ -139,6 +139,16 @@ const newBookDialogConfirmButton = newBookDialog.querySelector("button#confirmBu
 const newBookDialogCancelButton = newBookDialog.querySelector("button#cancelButton");
 const newBookDialogForm = newBookDialog.querySelector("form");
 
+// Inputs to validate
+const titleInput = newBookDialogForm.querySelector("input#title");
+
+function isTitleValid(){
+    if (!titleInput.value){
+        return false;
+    }
+    return true;
+}
+
 // "Show the dialog" button opens the <dialog> modally
 newBookButton.addEventListener("click", () => {
     newBookDialog.showModal();
@@ -146,7 +156,10 @@ newBookButton.addEventListener("click", () => {
 
 newBookDialogConfirmButton.addEventListener("click", (event) => {
     event.preventDefault();
-    newBookDialog.close("confirm");
+    if (isTitleValid()){
+        newBookDialog.close("confirm");
+    }
+    
 }); 
 
 /* "Cancel" button closes the dialog without submitting because of [formmethod="dialog"].
